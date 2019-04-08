@@ -32,7 +32,7 @@ Namespace My
 
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()> _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.TWRP_Theme_Editor.Form1
+            Me.MainForm = Global.TWRP_Theme_Editor.frm_Main
         End Sub
     End Class
 End Namespace

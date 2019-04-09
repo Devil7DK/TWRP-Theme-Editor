@@ -36,6 +36,11 @@ Partial Public Class frm_Main
         If e.Node.Tag IsNot Nothing Then
             pg_Main.SelectedObject = e.Node.Tag
         End If
+
+        If e.Node.Tag IsNot Nothing AndAlso TypeOf e.Node.Tag Is Objects.Template Then
+            Dim Template As Objects.Template = CType(e.Node.Tag, Objects.Template)
+            Utils.LoadElementsToTree(Template.Elements, Tree_Elements)
+        End If
     End Sub
 
     Sub ShowVariablesEditor(ByVal Variables As BindingList(Of Objects.Variable), ByVal ParentName As String)

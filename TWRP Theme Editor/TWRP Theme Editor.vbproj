@@ -103,6 +103,7 @@
     <Compile Include="Objects\Image.vb" />
     <Compile Include="Objects\ItemBase.vb" />
     <Compile Include="Objects\Page.vb" />
+    <Compile Include="Objects\PageBase.vb" />
     <Compile Include="Objects\Placement.vb" />
     <Compile Include="Objects\Template.vb" />
     <Compile Include="Objects\Theme.vb" />

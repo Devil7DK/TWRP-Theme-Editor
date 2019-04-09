@@ -1,12 +1,9 @@
 ﻿Namespace Objects
-    Public Class Template
+    Public Class Template : Inherits PageBase
 
 #Region "Properties"
         Property Name As String
-
         Property Background As String
-
-        Property Elements As New List(Of Elements.ElementBase)
 #End Region
 
     End Class

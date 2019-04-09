@@ -15,7 +15,7 @@ Namespace Objects
 
         Property Variables As New BindingList(Of Variable) With {.AllowNew = True, .AllowEdit = True, .AllowRemove = True}
 
-        Property Templates As New List(Of ItemBase)
+        Property Templates As New List(Of Template)
 
         Property Pages As New List(Of Page)
 #End Region

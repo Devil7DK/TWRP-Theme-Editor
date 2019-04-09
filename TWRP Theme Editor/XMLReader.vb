@@ -71,6 +71,24 @@ Public Class XMLReader
                                 Theme.Variables.Add(New Objects.Variable(Name, Value, CBool(Persist)))
                             End If
                         Next
+
+                    ElseIf RecoveryItemNode.Name = "templates" Then
+                        For Each TemplateNode As XmlNode In RecoveryItemNode.ChildNodes
+                            If TemplateNode.Name = "template" Then
+                                Dim Template As New Objects.Template
+                                Template.Name = TemplateNode.Attributes("name").Value
+
+                                For Each TemplateItemNode As XmlNode In TemplateNode.ChildNodes
+                                    If TemplateItemNode.Name = "background" Then
+                                        Template.Background = TemplateItemNode.Attributes("color").Value
+                                    End If
+
+                                    ReadElements(TemplateNode, Template)
+                                Next
+
+                                Theme.Templates.Add(Template)
+                            End If
+                        Next
                     End If
                 Next
 
@@ -78,4 +96,95 @@ Public Class XMLReader
         Next
     End Sub
 
+    Private Shared Sub ReadElements(ByVal ParentNode As XmlNode, ByVal Page As Objects.PageBase)
+        For Each ElementNode As XmlNode In ParentNode.ChildNodes
+            Dim Conditions As New List(Of Objects.Condition)
+            ReadConditions(ElementNode, Conditions)
+
+            Dim Actions As New List(Of Objects.Action)
+            ReadActions(ElementNode, Actions)
+
+            Dim Placement As Objects.Placement = ReadPlacement(ElementNode)
+
+            If ElementNode.Name = "action" Then
+                Dim Key As String = ""
+
+                Page.Actions.Add(New Objects.Elements.Action(Key, Actions))
+
+            ElseIf ElementNode.Name = "button" Then
+                Dim Image As String = ""
+                Dim HighlightedImage As String = ""
+
+                For Each ImageNode As XmlNode In ElementNode.ChildNodes
+                    If ImageNode.Name = "image" Then
+                        If ImageNode.Attributes("resource") IsNot Nothing Then Image = ImageNode.Attributes("highlightresource").Value
+                        If ImageNode.Attributes("highlightresource") IsNot Nothing Then HighlightedImage = ImageNode.Attributes("highlightresource").Value
+                        Exit For
+                    End If
+                Next
+
+                Page.Elements.Add(New Objects.Elements.Button(Placement, Conditions, Actions, Image, HighlightedImage))
+
+            ElseIf ElementNode.Name = "fill" Then
+                Dim Color As String = String.Empty
+
+                If ElementNode.Attributes("color") IsNot Nothing Then Color = ElementNode.Attributes("color").Value
+
+                Page.Elements.Add(New Objects.Elements.Fill(Placement, Conditions, Actions, Color))
+            End If
+        Next
+    End Sub
+
+    Private Shared Sub ReadActions(ByVal ParentNode As XmlNode, ByVal Actions As List(Of Objects.Action))
+        For Each ActionNode As XmlNode In ParentNode.ChildNodes
+            If ActionNode.Name = "action" Then
+                Dim [Function] As String = ""
+                Dim Value As String = ActionNode.InnerText
+
+                If ActionNode.Attributes("function") IsNot Nothing Then [Function] = ActionNode.Attributes("function").Value
+
+                Actions.Add(New Objects.Action([Function], Value))
+            End If
+        Next
+    End Sub
+
+    Private Shared Sub ReadConditions(ByVal ParentNode As XmlNode, ByVal Conditions As List(Of Objects.Condition))
+        For Each ConditionNode As XmlNode In ParentNode.ChildNodes
+            If ConditionNode.Name = "condition" Then
+                Dim Var1 As String = String.Empty
+                Dim Var2 As String = String.Empty
+
+                If ConditionNode.Attributes("var1") IsNot Nothing Then Var1 = ConditionNode.Attributes("var1").Value
+                If ConditionNode.Attributes("var2") IsNot Nothing Then Var2 = ConditionNode.Attributes("var2").Value
+
+                If Not String.IsNullOrEmpty(Var1) Or Not String.IsNullOrEmpty(Var2) Then
+                    Conditions.Add(New Objects.Condition(Var1, Var2))
+                End If
+            End If
+        Next
+    End Sub
+
+    Private Shared Function ReadPlacement(ByVal ParentNode As XmlNode) As Objects.Placement
+        For Each PlacementNode As XmlNode In ParentNode.ChildNodes
+            If PlacementNode.Name = "placement" Then
+                Dim X As String = String.Empty
+                Dim Y As String = String.Empty
+                Dim Width As String = String.Empty
+                Dim Height As String = String.Empty
+                Dim Placement As String = String.Empty
+
+                If PlacementNode.Attributes("x") IsNot Nothing Then X = PlacementNode.Attributes("x").Value
+                If PlacementNode.Attributes("y") IsNot Nothing Then Y = PlacementNode.Attributes("y").Value
+                If PlacementNode.Attributes("width") IsNot Nothing Then Width = PlacementNode.Attributes("width").Value
+                If PlacementNode.Attributes("height") IsNot Nothing Then Height = PlacementNode.Attributes("height").Value
+                If PlacementNode.Attributes("placement") IsNot Nothing Then Placement = PlacementNode.Attributes("placement").Value
+
+                Return New Objects.Placement(X, Y, Width, Height, Placement)
+            End If
+        Next
+
+        Return Nothing
+    End Function
+
 End Class
+

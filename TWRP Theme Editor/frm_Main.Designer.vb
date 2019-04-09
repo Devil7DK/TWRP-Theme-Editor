@@ -38,12 +38,12 @@
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.DockPanel2 = New DevExpress.XtraBars.Docking.DockPanel()
         Me.DockPanel2_Container = New DevExpress.XtraBars.Docking.ControlContainer()
-        Me.TreeView1 = New System.Windows.Forms.TreeView()
+        Me.Tree_Elements = New System.Windows.Forms.TreeView()
         Me.panelContainer1 = New DevExpress.XtraBars.Docking.DockPanel()
         Me.DockPanel5 = New DevExpress.XtraBars.Docking.DockPanel()
         Me.DockPanel5_Container = New DevExpress.XtraBars.Docking.ControlContainer()
         Me.Tree_ThemeExplorer = New System.Windows.Forms.TreeView()
-        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
+        Me.ImageList_ThemeExplorer = New System.Windows.Forms.ImageList(Me.components)
         Me.DockPanel3 = New DevExpress.XtraBars.Docking.DockPanel()
         Me.DockPanel3_Container = New DevExpress.XtraBars.Docking.ControlContainer()
         Me.pg_Main = New DevExpress.XtraVerticalGrid.PropertyGridControl()
@@ -52,6 +52,7 @@
         Me.DocumentManager1 = New DevExpress.XtraBars.Docking2010.DocumentManager(Me.components)
         Me.TabbedView1 = New DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(Me.components)
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.ImageList_Elements = New System.Windows.Forms.ImageList(Me.components)
         CType(Me.ribbonControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DockManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DockPanel1.SuspendLayout()
@@ -161,19 +162,22 @@
         '
         'DockPanel2_Container
         '
-        Me.DockPanel2_Container.Controls.Add(Me.TreeView1)
+        Me.DockPanel2_Container.Controls.Add(Me.Tree_Elements)
         Me.DockPanel2_Container.Location = New System.Drawing.Point(4, 23)
         Me.DockPanel2_Container.Name = "DockPanel2_Container"
         Me.DockPanel2_Container.Size = New System.Drawing.Size(191, 274)
         Me.DockPanel2_Container.TabIndex = 0
         '
-        'TreeView1
+        'Tree_Elements
         '
-        Me.TreeView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TreeView1.Location = New System.Drawing.Point(0, 0)
-        Me.TreeView1.Name = "TreeView1"
-        Me.TreeView1.Size = New System.Drawing.Size(191, 274)
-        Me.TreeView1.TabIndex = 5
+        Me.Tree_Elements.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Tree_Elements.ImageIndex = 0
+        Me.Tree_Elements.ImageList = Me.ImageList_Elements
+        Me.Tree_Elements.Location = New System.Drawing.Point(0, 0)
+        Me.Tree_Elements.Name = "Tree_Elements"
+        Me.Tree_Elements.SelectedImageIndex = 0
+        Me.Tree_Elements.Size = New System.Drawing.Size(191, 274)
+        Me.Tree_Elements.TabIndex = 5
         '
         'panelContainer1
         '
@@ -211,26 +215,26 @@
         '
         Me.Tree_ThemeExplorer.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Tree_ThemeExplorer.ImageIndex = 0
-        Me.Tree_ThemeExplorer.ImageList = Me.ImageList1
+        Me.Tree_ThemeExplorer.ImageList = Me.ImageList_ThemeExplorer
         Me.Tree_ThemeExplorer.Location = New System.Drawing.Point(0, 0)
         Me.Tree_ThemeExplorer.Name = "Tree_ThemeExplorer"
         Me.Tree_ThemeExplorer.SelectedImageIndex = 0
         Me.Tree_ThemeExplorer.Size = New System.Drawing.Size(191, 123)
         Me.Tree_ThemeExplorer.TabIndex = 0
         '
-        'ImageList1
+        'ImageList_ThemeExplorer
         '
-        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
-        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
-        Me.ImageList1.Images.SetKeyName(0, "theme.png")
-        Me.ImageList1.Images.SetKeyName(1, "resources.png")
-        Me.ImageList1.Images.SetKeyName(2, "font.png")
-        Me.ImageList1.Images.SetKeyName(3, "image.png")
-        Me.ImageList1.Images.SetKeyName(4, "variables.png")
-        Me.ImageList1.Images.SetKeyName(5, "templates.png")
-        Me.ImageList1.Images.SetKeyName(6, "template.png")
-        Me.ImageList1.Images.SetKeyName(7, "pages.png")
-        Me.ImageList1.Images.SetKeyName(8, "page.png")
+        Me.ImageList_ThemeExplorer.ImageStream = CType(resources.GetObject("ImageList_ThemeExplorer.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ImageList_ThemeExplorer.TransparentColor = System.Drawing.Color.Transparent
+        Me.ImageList_ThemeExplorer.Images.SetKeyName(0, "theme.png")
+        Me.ImageList_ThemeExplorer.Images.SetKeyName(1, "resources.png")
+        Me.ImageList_ThemeExplorer.Images.SetKeyName(2, "font.png")
+        Me.ImageList_ThemeExplorer.Images.SetKeyName(3, "image.png")
+        Me.ImageList_ThemeExplorer.Images.SetKeyName(4, "variables.png")
+        Me.ImageList_ThemeExplorer.Images.SetKeyName(5, "templates.png")
+        Me.ImageList_ThemeExplorer.Images.SetKeyName(6, "template.png")
+        Me.ImageList_ThemeExplorer.Images.SetKeyName(7, "pages.png")
+        Me.ImageList_ThemeExplorer.Images.SetKeyName(8, "page.png")
         '
         'DockPanel3
         '
@@ -285,6 +289,18 @@
         Me.DocumentManager1.ContainerControl = Me
         Me.DocumentManager1.View = Me.TabbedView1
         Me.DocumentManager1.ViewCollection.AddRange(New DevExpress.XtraBars.Docking2010.Views.BaseView() {Me.TabbedView1})
+        '
+        'ImageList_Elements
+        '
+        Me.ImageList_Elements.ImageStream = CType(resources.GetObject("ImageList_Elements.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ImageList_Elements.TransparentColor = System.Drawing.Color.Transparent
+        Me.ImageList_Elements.Images.SetKeyName(0, "element_control.png")
+        Me.ImageList_Elements.Images.SetKeyName(1, "element_action.png")
+        Me.ImageList_Elements.Images.SetKeyName(2, "element_button.png")
+        Me.ImageList_Elements.Images.SetKeyName(3, "element_fill.png")
+        Me.ImageList_Elements.Images.SetKeyName(4, "element_image.png")
+        Me.ImageList_Elements.Images.SetKeyName(5, "element_progressbar.png")
+        Me.ImageList_Elements.Images.SetKeyName(6, "element_text.png")
         '
         'frm_Main
         '
@@ -343,6 +359,7 @@
     Friend WithEvents SkinRibbonGalleryBarItem1 As DevExpress.XtraBars.SkinRibbonGalleryBarItem
     Friend WithEvents RibbonPageGroup1 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents Tree_ThemeExplorer As TreeView
-    Friend WithEvents ImageList1 As ImageList
-    Friend WithEvents TreeView1 As TreeView
+    Friend WithEvents ImageList_ThemeExplorer As ImageList
+    Friend WithEvents Tree_Elements As TreeView
+    Friend WithEvents ImageList_Elements As ImageList
 End Class

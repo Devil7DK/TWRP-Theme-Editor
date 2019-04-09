@@ -91,11 +91,19 @@
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="Objects\Condition.vb" />
-    <Compile Include="Objects\Fill.vb" />
+    <Compile Include="Objects\Action.vb" />
+    <Compile Include="Objects\Elements\Action.vb" />
+    <Compile Include="Objects\Elements\Button.vb" />
+    <Compile Include="Objects\Elements\ElementBase.vb" />
+    <Compile Include="Objects\Elements\Fill.vb" />
+    <Compile Include="Objects\Elements\Image.vb" />
+    <Compile Include="Objects\Elements\ProgressBar.vb" />
+    <Compile Include="Objects\Elements\Text.vb" />
     <Compile Include="Objects\Font.vb" />
     <Compile Include="Objects\Image.vb" />
     <Compile Include="Objects\ItemBase.vb" />
     <Compile Include="Objects\Page.vb" />
+    <Compile Include="Objects\Placement.vb" />
     <Compile Include="Objects\Template.vb" />
     <Compile Include="Objects\Theme.vb" />
     <Compile Include="Objects\Variable.vb" />

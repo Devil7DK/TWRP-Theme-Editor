@@ -114,16 +114,28 @@ Public Class XMLReader
             ElseIf ElementNode.Name = "button" Then
                 Dim Image As String = ""
                 Dim HighlightedImage As String = ""
+                Dim HighlightedColor As String = ""
+                Dim Font As String = ""
+                Dim FontColor As String = ""
+                Dim Text As String = ""
+
+                ReadFontAndText(ElementNode, Font, FontColor, Text)
+
+                For Each HColorNode As XmlNode In ElementNode.ChildNodes
+                    If HColorNode.Name = "highlight" Then
+                        If HColorNode.Attributes("color") IsNot Nothing Then HighlightedColor = HColorNode.Attributes("color").Value
+                    End If
+                Next
 
                 For Each ImageNode As XmlNode In ElementNode.ChildNodes
                     If ImageNode.Name = "image" Then
-                        If ImageNode.Attributes("resource") IsNot Nothing Then Image = ImageNode.Attributes("highlightresource").Value
+                        If ImageNode.Attributes("resource") IsNot Nothing Then Image = ImageNode.Attributes("resource").Value
                         If ImageNode.Attributes("highlightresource") IsNot Nothing Then HighlightedImage = ImageNode.Attributes("highlightresource").Value
                         Exit For
                     End If
                 Next
 
-                Page.Elements.Add(New Objects.Elements.Button(Placement, Conditions, Actions, Image, HighlightedImage))
+                Page.Elements.Add(New Objects.Elements.Button(Placement, Conditions, Actions, Image, HighlightedImage, HighlightedColor, Font, FontColor, Text))
 
             ElseIf ElementNode.Name = "fill" Then
                 Dim Color As String = String.Empty
@@ -131,6 +143,28 @@ Public Class XMLReader
                 If ElementNode.Attributes("color") IsNot Nothing Then Color = ElementNode.Attributes("color").Value
 
                 Page.Elements.Add(New Objects.Elements.Fill(Placement, Conditions, Actions, Color))
+
+            ElseIf ElementNode.Name = "image" Then
+                Dim Image As String = ""
+
+                For Each ImageNode As XmlNode In ElementNode.ChildNodes
+                    If ImageNode.Name = "image" Then
+                        If ImageNode.Attributes("resource") IsNot Nothing Then Image = ImageNode.Attributes("resource").Value
+                        Exit For
+                    End If
+                Next
+
+                Page.Elements.Add(New Objects.Elements.Image(Placement, Conditions, Actions, Image))
+
+            ElseIf ElementNode.Name = "text" Then
+                Dim Font As String = ""
+                Dim FontColor As String = ""
+                Dim Text As String = ""
+
+                ReadFontAndText(ElementNode, Font, FontColor, Text)
+
+                Page.Elements.Add(New Objects.Elements.Text(Placement, Conditions, Actions, Font, FontColor, Text))
+
             End If
         Next
     End Sub
@@ -153,12 +187,14 @@ Public Class XMLReader
             If ConditionNode.Name = "condition" Then
                 Dim Var1 As String = String.Empty
                 Dim Var2 As String = String.Empty
+                Dim [Operator] As String
 
                 If ConditionNode.Attributes("var1") IsNot Nothing Then Var1 = ConditionNode.Attributes("var1").Value
                 If ConditionNode.Attributes("var2") IsNot Nothing Then Var2 = ConditionNode.Attributes("var2").Value
+                If ConditionNode.Attributes("op") IsNot Nothing Then [Operator] = ConditionNode.Attributes("op").Value
 
                 If Not String.IsNullOrEmpty(Var1) Or Not String.IsNullOrEmpty(Var2) Then
-                    Conditions.Add(New Objects.Condition(Var1, Var2))
+                    Conditions.Add(New Objects.Condition(Var1, Var2, [Operator]))
                 End If
             End If
         Next
@@ -185,6 +221,17 @@ Public Class XMLReader
 
         Return Nothing
     End Function
+
+    Private Shared Sub ReadFontAndText(ByVal ParentNode As XmlNode, ByRef Font As String, ByRef FontColor As String, ByRef Text As String)
+        For Each Node As XmlNode In ParentNode.ChildNodes
+            If Node.Name = "font" Then
+                If Node.Attributes("resource") IsNot Nothing Then Font = Node.Attributes("resource").Value
+                If Node.Attributes("color") IsNot Nothing Then Font = Node.Attributes("color").Value
+            ElseIf Node.Name = "text" Then
+                Text = Node.InnerText
+            End If
+        Next
+    End Sub
 
 End Class
 

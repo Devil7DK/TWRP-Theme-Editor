@@ -39,6 +39,7 @@
         Me.DockPanel2 = New DevExpress.XtraBars.Docking.DockPanel()
         Me.DockPanel2_Container = New DevExpress.XtraBars.Docking.ControlContainer()
         Me.Tree_Elements = New System.Windows.Forms.TreeView()
+        Me.ImageList_Elements = New System.Windows.Forms.ImageList(Me.components)
         Me.panelContainer1 = New DevExpress.XtraBars.Docking.DockPanel()
         Me.DockPanel5 = New DevExpress.XtraBars.Docking.DockPanel()
         Me.DockPanel5_Container = New DevExpress.XtraBars.Docking.ControlContainer()
@@ -50,9 +51,8 @@
         Me.SplitterControl1 = New DevExpress.XtraEditors.SplitterControl()
         Me.pgd_Main = New DevExpress.XtraVerticalGrid.PropertyDescriptionControl()
         Me.DocumentManager1 = New DevExpress.XtraBars.Docking2010.DocumentManager(Me.components)
-        Me.TabbedView1 = New DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(Me.components)
+        Me.tv_Main = New DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(Me.components)
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
-        Me.ImageList_Elements = New System.Windows.Forms.ImageList(Me.components)
         CType(Me.ribbonControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DockManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DockPanel1.SuspendLayout()
@@ -66,7 +66,7 @@
         Me.DockPanel3_Container.SuspendLayout()
         CType(Me.pg_Main, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DocumentManager1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TabbedView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tv_Main, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ribbonControl1
@@ -179,6 +179,18 @@
         Me.Tree_Elements.Size = New System.Drawing.Size(191, 274)
         Me.Tree_Elements.TabIndex = 5
         '
+        'ImageList_Elements
+        '
+        Me.ImageList_Elements.ImageStream = CType(resources.GetObject("ImageList_Elements.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ImageList_Elements.TransparentColor = System.Drawing.Color.Transparent
+        Me.ImageList_Elements.Images.SetKeyName(0, "element_control.png")
+        Me.ImageList_Elements.Images.SetKeyName(1, "element_action.png")
+        Me.ImageList_Elements.Images.SetKeyName(2, "element_button.png")
+        Me.ImageList_Elements.Images.SetKeyName(3, "element_fill.png")
+        Me.ImageList_Elements.Images.SetKeyName(4, "element_image.png")
+        Me.ImageList_Elements.Images.SetKeyName(5, "element_progressbar.png")
+        Me.ImageList_Elements.Images.SetKeyName(6, "element_text.png")
+        '
         'panelContainer1
         '
         Me.panelContainer1.Controls.Add(Me.DockPanel5)
@@ -287,20 +299,8 @@
         'DocumentManager1
         '
         Me.DocumentManager1.ContainerControl = Me
-        Me.DocumentManager1.View = Me.TabbedView1
-        Me.DocumentManager1.ViewCollection.AddRange(New DevExpress.XtraBars.Docking2010.Views.BaseView() {Me.TabbedView1})
-        '
-        'ImageList_Elements
-        '
-        Me.ImageList_Elements.ImageStream = CType(resources.GetObject("ImageList_Elements.ImageStream"), System.Windows.Forms.ImageListStreamer)
-        Me.ImageList_Elements.TransparentColor = System.Drawing.Color.Transparent
-        Me.ImageList_Elements.Images.SetKeyName(0, "element_control.png")
-        Me.ImageList_Elements.Images.SetKeyName(1, "element_action.png")
-        Me.ImageList_Elements.Images.SetKeyName(2, "element_button.png")
-        Me.ImageList_Elements.Images.SetKeyName(3, "element_fill.png")
-        Me.ImageList_Elements.Images.SetKeyName(4, "element_image.png")
-        Me.ImageList_Elements.Images.SetKeyName(5, "element_progressbar.png")
-        Me.ImageList_Elements.Images.SetKeyName(6, "element_text.png")
+        Me.DocumentManager1.View = Me.tv_Main
+        Me.DocumentManager1.ViewCollection.AddRange(New DevExpress.XtraBars.Docking2010.Views.BaseView() {Me.tv_Main})
         '
         'frm_Main
         '
@@ -327,7 +327,7 @@
         Me.DockPanel3_Container.ResumeLayout(False)
         CType(Me.pg_Main, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DocumentManager1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TabbedView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tv_Main, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -349,7 +349,7 @@
     Friend WithEvents DockPanel1_Container As DevExpress.XtraBars.Docking.ControlContainer
     Friend WithEvents RichTextBox1 As RichTextBox
     Friend WithEvents DocumentManager1 As DevExpress.XtraBars.Docking2010.DocumentManager
-    Friend WithEvents TabbedView1 As DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView
+    Friend WithEvents tv_Main As DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView
     Friend WithEvents pg_Main As DevExpress.XtraVerticalGrid.PropertyGridControl
     Friend WithEvents SplitterControl1 As DevExpress.XtraEditors.SplitterControl
     Friend WithEvents pgd_Main As DevExpress.XtraVerticalGrid.PropertyDescriptionControl

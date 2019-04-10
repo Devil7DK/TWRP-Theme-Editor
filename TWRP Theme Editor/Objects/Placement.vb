@@ -20,5 +20,11 @@
         End Sub
 #End Region
 
+#Region "Subs/Functions"
+        Public Overrides Function ToString() As String
+            Return String.Format("x={0},y={1},w={2},h={3},placement={4}", X, Y, Width, Height, Placement)
+        End Function
+#End Region
+
     End Class
 End Namespace

@@ -8,21 +8,6 @@
 #Region "Properties"
         Property FileName As String = ""
         Property RetainAspect As Boolean = False
-
-        ReadOnly Property GetImage As Drawing.Image
-            Get
-                If Image Is Nothing Then
-                    If My.Computer.FileSystem.FileExists(FileName) Then
-                        Me.Image = Drawing.Image.FromFile(FileName)
-                        Return Image
-                    Else
-                        Return New Drawing.Bitmap(1, 1)
-                    End If
-                Else
-                    Return Me.Image
-                End If
-            End Get
-        End Property
 #End Region
 
 #Region "Constructor"

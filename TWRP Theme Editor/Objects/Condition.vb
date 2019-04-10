@@ -4,17 +4,14 @@
 #Region "Property"
         Property Variable1 As String
         Property Variable2 As String
+        Property [Operator] As String
 #End Region
 
 #Region "Constructor"
-        Sub New(ByVal Variable1 As String)
-            Me.Variable1 = Variable1
-            Me.Variable2 = String.Empty
-        End Sub
-
-        Sub New(ByVal Variable1 As String, ByVal Variable2 As String)
+        Sub New(ByVal Variable1 As String, ByVal Variable2 As String, ByVal [Operator] As String)
             Me.Variable1 = Variable1
             Me.Variable2 = Variable2
+            Me.Operator = [Operator]
         End Sub
 #End Region
 
